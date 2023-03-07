@@ -41,4 +41,27 @@ let determineWinner = (playerChoice, computerChoice) => {
     }
 }
 
+// Play a set of 5 rounds and determine the winner 
 
+let game = () => {
+    let playerScore = 0
+    let computerScore = 0
+    for (let i = 0; i <= 4; i++) {
+        playerChoice = prompt("Rock, paper or scissors?"); 
+        computerChoice = getComputerChoice();
+        roundWinner = determineWinner(playerChoice, computerChoice)
+        console.log(roundWinner);
+        if (roundWinner === 'Player wins!') {
+            playerScore += 1;
+        } else if (roundWinner === 'Computer wins!') {
+            computerScore += 1;
+        }
+    }
+    if (playerScore > computerScore) {
+        console.log("Game goes to the Player!");
+    } else if (computerScore > playerScore) {
+        console.log("Game goes to the Computer!");
+    } else {
+        console.log("The game is a tie!");
+    }
+}
