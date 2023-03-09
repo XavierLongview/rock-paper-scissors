@@ -66,7 +66,10 @@ optionButtons.forEach( button => {
             +playerScore.textContent++;
         } else if (winner === 'Computer wins!') {
             +computerScore.textContent++;
-        }  
+        } else {
+            +playerScore.textContent++
+            +computerScore.textContent++
+        }
 
         if (+roundCounter.textContent < 4) {
             +roundCounter.textContent++;
