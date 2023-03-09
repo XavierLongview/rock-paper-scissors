@@ -40,28 +40,61 @@ let determineWinner = (playerChoice, computerChoice) => {
         }
     }
 }
+const playerScore = document.querySelector('#player-score');
+const computerScore = document.querySelector('#computer-score');
+const outcome = document.querySelector('.outcome');
+const roundCounter = document.querySelector('#round-counter');
+const gameEnd = document.querySelector('.game-end')
+const endText = document.querySelector('.end-text');
+const resetButton = document.querySelector('.reset-button')
+const optionButtons = document.querySelectorAll('.button');
+const opts = document.querySelector('.options')
+// Clicking the round button will fire a round of RPS 
+// Steps: determine winner, post restuls, increment player score
+// After 5 rounds: hide the buttons, show a reset button, annouce the winner 
 
-// Play a set of 5 rounds and determine the winner 
+optionButtons.forEach( button => {
+    button.addEventListener('click', () => {
+        let playerChoice = button.textContent;
+        let computerChoice = getComputerChoice();
+        let winner = determineWinner(playerChoice, computerChoice);
 
-let game = () => {
-    let playerScore = 0
-    let computerScore = 0
-    for (let i = 0; i <= 4; i++) {
-        playerChoice = prompt("Rock, paper or scissors?"); 
-        computerChoice = getComputerChoice();
-        roundWinner = determineWinner(playerChoice, computerChoice)
-        console.log(roundWinner);
-        if (roundWinner === 'Player wins!') {
-            playerScore += 1;
-        } else if (roundWinner === 'Computer wins!') {
-            computerScore += 1;
+        
+        outcome.textContent = winner;
+
+        if (winner === 'Player wins!') {
+            +playerScore.textContent++;
+        } else if (winner === 'Computer wins!') {
+            +computerScore.textContent++;
+        }  
+
+        if (+roundCounter.textContent < 4) {
+            +roundCounter.textContent++;
+
+        } else {
+            // roundCounter.textContent = 0
+            // outcome.textContent = ''
+            // playerScore.textContent = 0
+            // computerScore.textContent = 0
+            +roundCounter.textContent++;
+            button.parentElement.style.display = "none";
+            gameEnd.style.display = "flex";
+            if (+playerScore.textContent > +computerScore.textContent) {
+                endText.textContent = "Player Wins The Game!";
+            } else if (+playerScore.textContent < +computerScore.textContent) {
+                endText.textContent = "Computer Wins The Game!";
+            } else {
+                endText.textContent = "Tie Game!";
+            }
         }
     }
-    if (playerScore > computerScore) {
-        console.log("Game goes to the Player!");
-    } else if (computerScore > playerScore) {
-        console.log("Game goes to the Computer!");
-    } else {
-        console.log("The game is a tie!");
-    }
-}
+)});
+
+resetButton.addEventListener('click', () => {
+    opts.style.display = 'flex';
+    gameEnd.style.display = 'none';
+    outcome.textContent = '';
+    playerScore.textContent = 0;
+    computerScore.textContent = 0;
+    roundCounter.textContent = 0
+})

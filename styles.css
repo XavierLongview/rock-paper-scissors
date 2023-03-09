@@ -1,0 +1,53 @@
+h1 {
+    text-align: center;
+    color: darkblue;
+    margin: 30px
+}
+
+.options {
+    display: flex;
+    justify-content: space-around;
+    margin: 30px;
+    height: 120px;
+}
+
+.end-text {
+    font-size: 48px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.game-end {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    margin: 30px;
+    justify-content: space-between;
+}
+
+.outcome {
+    text-align: center;
+}
+
+.round {
+    text-align: center;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+.button, 
+.reset-button {
+    height: 120px;
+    width: 120px;
+}
+
+.scores {
+    display: flex;
+    justify-content: space-around;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
